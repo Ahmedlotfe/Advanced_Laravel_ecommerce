@@ -15,6 +15,14 @@ return new class extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->id();
+            $table->string("name")->unique();
+            $table->string("slug")->unique();
+            $table->string("description")->unique();
+            $table->integer("price");
+            $table->string('image')->nullable();
+            $table->integer("stock");
+            $table->boolean("is_available")->default(true);
+            $table->foreignId("category_id")->constrained()->cascadeOnDelete();
             $table->timestamps();
         });
     }

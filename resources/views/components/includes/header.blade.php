@@ -1,3 +1,5 @@
+@props(["categories"])
+
 <header class="section-header">
     <nav class="navbar p-md-0 navbar-expand-sm navbar-light border-bottom">
         <div class="container">
@@ -36,16 +38,13 @@
                             <i class="fa fa-bars"></i> All category
                         </button>
                         <div class="dropdown-menu">
-                            <a class="dropdown-item" href="#">Machinery / Mechanical Parts / Tools </a>
-                            <a class="dropdown-item" href="#">Consumer Electronics / Home Appliances </a>
-                            <a class="dropdown-item" href="#">Auto / Transportation</a>
-                            <a class="dropdown-item" href="#">Apparel / Textiles / Timepieces </a>
-                            <a class="dropdown-item" href="#">Home & Garden / Construction / Lights </a>
-                            <a class="dropdown-item" href="#">Beauty & Personal Care / Health </a>
+                            @foreach($categories as $category)
+                            <a class="dropdown-item" href="">{{ ucwords($category->name) }}</a>
+                            @endforeach
                         </div>
                     </div> <!-- category-wrap.// -->
                 </div> <!-- col.// -->
-                <a href="./store.html" class="btn btn-outline-primary">Store</a>
+                <a href="/store" class="btn btn-outline-primary">Store</a>
                 <div class="col-lg  col-md-6 col-sm-12 col">
                     <form action="#" class="search">
                         <div class="input-group w-100">
@@ -62,10 +61,23 @@
                 <div class="col-lg-3 col-sm-6 col-8 order-2 order-lg-3">
                     <div class="d-flex justify-content-end mb-3 mb-lg-0">
                         <div class="widget-header">
-                            <small class="title text-muted">Welcome guest!</small>
+                            <small class="title text-muted">Welcome {{ auth()->user()->name }}</small>
                             <div>
-                                <a href="./signin.html">Sign in</a> <span class="dark-transp"> | </span>
-                                <a href="./register.html"> Register</a>
+                                @auth
+                                <form style="display: inline;" action="/logout" method="post">
+                                    @csrf
+                                    <!-- <input class="btn-primary" type="submit" value="Log Out"> -->
+                                    <!-- <a href="/logout">Log Out</a> <span class="dark-transp"> | </span> -->
+                                    <button class="btn-primary">
+                                        Log Out
+                                    </button>
+                                    <span class="dark-transp"> | </span>
+                                </form>
+                                <a href="/dashboard"> Dashboard</a>
+                                @else
+                                <a href="/login">Sign in</a> <span class="dark-transp"> | </span>
+                                <a href="/register"> Register</a>
+                                @endauth
                             </div>
                         </div>
                         <a href="./cart.html" class="widget-header pl-3 ml-3">
