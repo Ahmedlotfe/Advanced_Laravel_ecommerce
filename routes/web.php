@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\StoreController;
+use App\Http\Controllers\CartItemController;
+use App\Http\Controllers\CheckoutController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,14 +21,18 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
+require __DIR__ . '/auth.php';
 
 Route::get('/', [StoreController::class, 'welcome']);
-Route::get('/store', [StoreController::class, 'store']);
-Route::get('/cart', [StoreController::class, 'cart']);
+Route::get('/store', [StoreController::class, 'store'])->middleware('auth');
+Route::get('/cart', [CartItemController::class, 'cart'])->middleware('auth');
+Route::post('/add_cart/{product:slug}', [CartItemController::class, 'add_cart'])->middleware('auth');
+Route::post('/remove_cart/{product:slug}', [CartItemController::class, 'remove_cart'])->middleware('auth');
+Route::post('/remove_cart_item/{product:slug}', [CartItemController::class, 'remove_cart_item'])->middleware('auth');
 
+Route::get('/checkout', [CheckoutController::class, 'checkout'])->middleware('auth');
 
-Route::get('/{product:slug}', [ProductController::class, 'index']);
 Route::get('/add_product', [ProductController::class, 'create'])->middleware('admin');
 Route::post('/add_product', [ProductController::class, 'store'])->middleware('admin');
 
-require __DIR__ . '/auth.php';
+Route::get('/{product:slug}', [ProductController::class, 'index'])->middleware('auth');

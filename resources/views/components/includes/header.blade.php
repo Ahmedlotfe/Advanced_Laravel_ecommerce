@@ -85,8 +85,10 @@
                             </div>
                         </div>
                         <a href="/cart" class="widget-header pl-3 ml-3">
+                            @auth
                             <div class="icon icon-sm rounded-circle border"><i class="fa fa-shopping-cart"></i></div>
-                            <span class="badge badge-pill badge-danger notify">0</span>
+                            <span class="badge badge-pill badge-danger notify">{{ Auth()->user()->cartItems(); }}</span>
+                            @endauth
                         </a>
                     </div> <!-- widgets-wrap.// -->
                 </div> <!-- col.// -->
