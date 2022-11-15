@@ -28,9 +28,9 @@
                 @foreach($products as $product)
                 <div class="col-md-3">
                     <div class="card card-product-grid">
-                        <a href="" class="img-wrap"> <img src="{{ asset('storage/' . $product->image) }}"> </a>
+                        <a href="/{{ $product->slug }}" class="img-wrap"> <img src="{{ asset('storage/' . $product->image) }}"> </a>
                         <figcaption class="info-wrap">
-                            <a href="./product-detail.html" class="title">{{ $product->name }}</a>
+                            <a href="/{{ $product->slug }}" class="title">{{ $product->name }}</a>
                             <div class="price mt-1">${{ $product->price }}</div> <!-- price-wrap.// -->
                         </figcaption>
                     </div>

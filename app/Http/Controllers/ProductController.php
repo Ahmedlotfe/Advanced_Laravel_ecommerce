@@ -12,7 +12,7 @@ class ProductController extends Controller
 {
     public function create()
     {
-        return view('add_product', [
+        return view('store.add_product', [
             "categories" => Category::all()
         ]);
     }
@@ -33,5 +33,13 @@ class ProductController extends Controller
 
         Product::create($attributes);
         return redirect('/');
+    }
+
+    public function index(Product $product)
+    {
+        return view('store.product_detail', [
+            "product" => $product,
+            "categories" => Category::all()
+        ]);
     }
 }

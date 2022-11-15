@@ -3,7 +3,6 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\StoreController;
-use App\Models\Product;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,9 +22,11 @@ Route::get('/dashboard', function () {
 
 Route::get('/', [StoreController::class, 'welcome']);
 Route::get('/store', [StoreController::class, 'store']);
+Route::get('/cart', [StoreController::class, 'cart']);
 
+
+Route::get('/{product:slug}', [ProductController::class, 'index']);
 Route::get('/add_product', [ProductController::class, 'create'])->middleware('admin');
 Route::post('/add_product', [ProductController::class, 'store'])->middleware('admin');
-
 
 require __DIR__ . '/auth.php';

@@ -39,16 +39,16 @@
                         </button>
                         <div class="dropdown-menu">
                             @foreach($categories as $category)
-                            <a class="dropdown-item" href="">{{ ucwords($category->name) }}</a>
+                            <a class="dropdown-item" href="?category={{ $category->slug }}">{{ ucwords($category->name) }}</a>
                             @endforeach
                         </div>
                     </div> <!-- category-wrap.// -->
                 </div> <!-- col.// -->
                 <a href="/store" class="btn btn-outline-primary">Store</a>
                 <div class="col-lg  col-md-6 col-sm-12 col">
-                    <form action="#" class="search">
+                    <form action="" class="search">
                         <div class="input-group w-100">
-                            <input type="text" class="form-control" style="width:60%;" placeholder="Search">
+                            <input type="text" class="form-control" style="width:60%;" placeholder="Search" name="search" value="{{ request('search') }}">
 
                             <div class="input-group-append">
                                 <button class="btn btn-primary" type="submit">
@@ -61,7 +61,11 @@
                 <div class="col-lg-3 col-sm-6 col-8 order-2 order-lg-3">
                     <div class="d-flex justify-content-end mb-3 mb-lg-0">
                         <div class="widget-header">
+                            @auth
                             <small class="title text-muted">Welcome {{ auth()->user()->name }}</small>
+                            @else
+                            <small class="title text-muted">Welcome Guest!</small>
+                            @endauth
                             <div>
                                 @auth
                                 <form style="display: inline;" action="/logout" method="post">
@@ -80,7 +84,7 @@
                                 @endauth
                             </div>
                         </div>
-                        <a href="./cart.html" class="widget-header pl-3 ml-3">
+                        <a href="/cart" class="widget-header pl-3 ml-3">
                             <div class="icon icon-sm rounded-circle border"><i class="fa fa-shopping-cart"></i></div>
                             <span class="badge badge-pill badge-danger notify">0</span>
                         </a>

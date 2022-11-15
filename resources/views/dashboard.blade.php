@@ -1,8 +1,13 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+        <!-- <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Dashboard') }}
-        </h2>
+        </h2> -->
+        <div class="col-lg-2 col-md-3 col-6">
+            <a href="./" class="brand-wrap">
+                <img class="logo" src="./images/logo.png">
+            </a> <!-- brand-wrap.// -->
+        </div>
     </x-slot>
 
     <div class="py-12">
@@ -15,3 +20,4 @@
         </div>
     </div>
 </x-app-layout>
+
