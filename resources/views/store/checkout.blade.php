@@ -12,55 +12,95 @@
 
                         <div class="card-body">
                             <h4 class="card-title mb-4">Billing Address</h4>
-                            <form action="" method="POST">
-
+                            <form action="/place_order" method="POST">
+                                @csrf
                                 <div class="form-row">
                                     <div class="col form-group">
                                         <label for="">First Name</label>
                                         <input type="text" name="first_name" class="form-control" required>
+
+                                        @error('first_name')
+                                        <p class="danger text-xs mt-1">{{ $message }}</p>
+                                        @enderror
                                     </div>
                                     <div class="col form-group">
                                         <label for="">Last Name</label>
                                         <input type="text" name="last_name" class="form-control" required>
+
+                                        @error('last_name')
+                                        <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                                        @enderror
                                     </div>
                                 </div>
                                 <div class="form-row">
                                     <div class="col form-group">
                                         <label for="">Email</label>
                                         <input type="email" name="email" class="form-control" required>
+
+                                        @error('email')
+                                        <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                                        @enderror
                                     </div>
                                     <div class="col form-group">
                                         <label for="">Phone Number</label>
                                         <input type="text" name="phone" class="form-control" required>
+
+                                        @error('phone')
+                                        <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                                        @enderror
                                     </div>
                                 </div>
                                 <div class="form-row">
                                     <div class="col form-group">
                                         <label for="">Address line 1</label>
                                         <input type="text" name="address_line_1" class="form-control" required>
+
+                                        @error('address_line_1')
+                                        <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                                        @enderror
                                     </div>
                                     <div class="col form-group">
                                         <label for="">Address line 2</label>
                                         <input type="text" name="address_line_2" class="form-control">
+
+                                        @error('address_line_2')
+                                        <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                                        @enderror
                                     </div>
                                 </div>
                                 <div class="form-row">
                                     <div class="col form-group">
                                         <label for="">City</label>
                                         <input type="text" name="city" class="form-control" required>
+
+                                        @error('city')
+                                        <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                                        @enderror
                                     </div>
                                     <div class="col form-group">
                                         <label for="">State</label>
                                         <input type="text" name="state" class="form-control" required>
+
+                                        @error('state')
+                                        <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                                        @enderror
                                     </div>
                                     <div class="col form-group">
                                         <label for="">Country</label>
                                         <input type="text" name="country" class="form-control" required>
+
+                                        @error('country')
+                                        <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                                        @enderror
                                     </div>
                                 </div>
                                 <div class="form-row">
                                     <label for="">Order Note</label>
                                     <textarea name="order_note" rows="2" class="form-control"></textarea>
+
+                                    @error('order_note')
+                                    <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                                    @enderror
                                 </div>
 
                         </div>

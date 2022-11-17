@@ -39,14 +39,14 @@
                         </button>
                         <div class="dropdown-menu">
                             @foreach($categories as $category)
-                            <a class="dropdown-item" href="?category={{ $category->slug }}">{{ ucwords($category->name) }}</a>
+                            <a class="dropdown-item" href="/store?category={{ $category->slug }}">{{ ucwords($category->name) }}</a>
                             @endforeach
                         </div>
                     </div> <!-- category-wrap.// -->
                 </div> <!-- col.// -->
                 <a href="/store" class="btn btn-outline-primary">Store</a>
                 <div class="col-lg  col-md-6 col-sm-12 col">
-                    <form action="" class="search">
+                    <form action="/store" class="search">
                         <div class="input-group w-100">
                             <input type="text" class="form-control" style="width:60%;" placeholder="Search" name="search" value="{{ request('search') }}">
 
