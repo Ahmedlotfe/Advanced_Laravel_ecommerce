@@ -9,11 +9,15 @@ use App\Models\OrderProduct;
 use App\Models\Payment;
 use App\Models\Product;
 
+
 use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Mail;
 
+use App\Mail\OrderCompleted;
+use App\Models\User;
 
 class PaymentController extends Controller
 {
@@ -94,6 +98,9 @@ class PaymentController extends Controller
         // Clear cart
         CartItem::where('user_id', 1)->where('is_active', true)->delete();
 
+        // Send order recieved mail to customer
+        $user = User::find($request->get('user_id'));
+        Mail::send(new OrderCompleted($user->email, $order->order_number));
 
         // Send order number and transaction id back to sendData methid via JsonResponse
         $data = [

@@ -16,12 +16,12 @@ return new class extends Migration
         Schema::create('order_products', function (Blueprint $table) {
             $table->id();
             $table->foreignId('order_id');
-            $table->foreignId('payment_id');
-            $table->foreignId('user_id');
+            // $table->foreignId('payment_id');
+            // $table->foreignId('user_id');
             $table->foreignId('product_id');
             $table->integer('quantity');
             $table->float('product_price');
-            $table->boolean('ordered')->default(false);
+            // $table->boolean('ordered')->default(false);
             $table->timestamps();
         });
     }

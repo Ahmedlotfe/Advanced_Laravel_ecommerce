@@ -24,7 +24,7 @@ return new class extends Migration
             $table->string('email');
             $table->string('address_line_1');
             $table->string('address_line_2');
-            $table->string('country');
+            $table->string('country');  
             $table->string('state');
             $table->string('city');
             $table->string('order_note')->nullable();
