@@ -18,6 +18,7 @@ use Illuminate\Support\Facades\Mail;
 
 use App\Mail\OrderCompleted;
 use App\Models\User;
+use App\Jobs\SendOrderRecievedMail;
 
 class PaymentController extends Controller
 {
@@ -100,7 +101,7 @@ class PaymentController extends Controller
 
         // Send order recieved mail to customer
         $user = User::find($request->get('user_id'));
-        Mail::send(new OrderCompleted($user->email, $order->order_number));
+        SendOrderRecievedMail::dispatch($user->email, $order->order_number);
 
         // Send order number and transaction id back to sendData methid via JsonResponse
         $data = [
